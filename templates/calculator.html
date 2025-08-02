@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real Calculator UI</title>
+    <!-- Bootstrap & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f1f3f5;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .calculator {
+            max-width: 350px;
+            margin: 80px auto;
+            background: #212529;
+            padding: 25px;
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .screen {
+            background: #000;
+            height: 60px;
+            text-align: right;
+            font-size: 1.8em;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+
+        .btn-calc {
+            width: 70px;
+            height: 70px;
+            font-size: 1.5em;
+            border-radius: 50%;
+            margin: 5px;
+        }
+
+        .btn-orange {
+            background-color: #f57c00;
+            color: white;
+        }
+
+        .btn-grey {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .btn-light-grey {
+            background-color: #adb5bd;
+            color: black;
+        }
+
+        .top-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .action-links a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <div class="top-info">
+            <div>Hello, {{ session['user'] }}</div>
+            <div class="action-links">
+                <a href="/"><i class="fas fa-home"></i></a>
+                <a href="/logout"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
+        </div>
+
+        <!-- Calculator screen (will display result) -->
+        <div class="screen">
+            {% if result is not none %}
+                {{ result }}
+            {% else %}
+                0
+            {% endif %}
+        </div>
+
+        <!-- Calculator form -->
+        <form method="post">
+            <!-- Hidden input fields to accept values -->
+            <input type="number" step="any" name="num1" class="form-control mb-2" placeholder="First Number" required>
+            <input type="number" step="any" name="num2" class="form-control mb-3" placeholder="Second Number" required>
+
+            <div class="d-flex flex-wrap justify-content-center">
+                <button name="operation" value="add" class="btn btn-grey btn-calc">+</button>
+                <button name="operation" value="subtract" class="btn btn-grey btn-calc">−</button>
+                <button name="operation" value="multiply" class="btn btn-grey btn-calc">×</button>
+                <button name="operation" value="divide" class="btn btn-grey btn-calc">÷</button>
+                <button type="submit" class="btn btn-orange btn-calc mt-2">=</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
