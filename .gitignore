@@ -1,0 +1,5 @@
+__pycache__/     # Compiled Python bytecode cache
+*.pyc            # Individual compiled Python files
+venv/            # Your virtual environment
+.env             # Environment variables (secrets, DB creds, etc.)
+config.py   # Likely contains config/secrets — good idea to ignore
